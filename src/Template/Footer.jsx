@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = ({ agencyDetails }) => {
-  console.log(agencyDetails);
+  console.log("Footer Component");
   return (
     <>
       <div className="container-fluid bg-light pt-5 px-sm-3 px-md-5">
@@ -61,7 +61,25 @@ const Footer = ({ agencyDetails }) => {
               </a>
             </div>
           </div>
-          <div className="col-lg-3 col-md-6 mb-5">
+          <div
+            className="col-lg-3 col-md-6 mb-5"
+            // style={{ backgroundColor: "gray" }}
+          >
+            <img
+              style={{ width: "100%", height: "100%", maxHeight: "350px" }}
+              src="https://marketplace.canva.com/EAE97rcdF5A/1/0/1131w/canva-blue-and-yellow-modern-job-hiring-poster-r-gWZi50xNk.jpg"
+            />
+          </div>
+          <div
+            className="col-lg-3 col-md-6 mb-5"
+            // style={{ backgroundColor: "gray" }}
+          >
+            <img
+              style={{ width: "100%", height: "100%", maxHeight: "350px" }}
+              src="https://marketplace.canva.com/EAE97rcdF5A/1/0/1131w/canva-blue-and-yellow-modern-job-hiring-poster-r-gWZi50xNk.jpg"
+            />
+          </div>
+          {/* <div className="col-lg-3 col-md-6 mb-5">
             <h4 className="font-weight-bold mb-4">Categories</h4>
             <div className="d-flex flex-wrap m-n1">
               <a href="" className="btn btn-sm btn-outline-secondary m-1">
@@ -142,7 +160,7 @@ const Footer = ({ agencyDetails }) => {
                 Lifestyle
               </a>
             </div>
-          </div>
+          </div> */}
           <div className="col-lg-2 col-md-6 mb-5">
             <h4 className="font-weight-bold mb-4">Quick Links</h4>
             <div className="d-flex flex-column justify-content-start">

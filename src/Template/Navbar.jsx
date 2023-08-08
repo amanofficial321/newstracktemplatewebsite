@@ -1,12 +1,14 @@
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ agencyDetails }) => {
   return (
     <div className="container-fluid p-0 mb-3">
       <nav className="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
         <a href="" className="navbar-brand d-block d-lg-none">
-          <h1 className="m-0 display-5 text-uppercase">
-            <span className="text-primary">News</span>Room
+          <h1 className="m-0 display-5 ">
+            <span className="text-danger">
+              {agencyDetails.publication_name}
+            </span>
           </h1>
         </a>
         <button

@@ -4,13 +4,20 @@ import { Carousel } from "react-responsive-carousel";
 import { useNavigate } from "react-router";
 
 const MainNewsSlider = ({ agencyDetails }) => {
+  // console.log(agencyDetails);
   const navigate = useNavigate();
+  console.log("MainNewsSlider Called");
   return (
     <div className="container-fluid py-3">
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
-            <Carousel showControls showIndicators infiniteLoop>
+            <Carousel
+              showControls
+              showIndicators
+              infiniteLoop
+              showThumbs={false}
+            >
               <div className="w-100 d-block" style={{ height: 435 }}>
                 <img src={require("./img/news-700x435-1.jpg")} alt="..." />
                 <h5>First slide label</h5>
@@ -47,7 +54,9 @@ const MainNewsSlider = ({ agencyDetails }) => {
               className="position-relative overflow-hidden mb-3"
               style={{ height: 80 }}
               onClick={() =>
-                navigate("/Category/Political", { state: { agencyDetails } })
+                navigate(`/${agencyDetails._id}/Category/Political`, {
+                  state: { agencyDetails },
+                })
               }
             >
               <img
@@ -63,7 +72,9 @@ const MainNewsSlider = ({ agencyDetails }) => {
               className="position-relative overflow-hidden mb-3"
               style={{ height: 80 }}
               onClick={() =>
-                navigate("/Category/Bollywood", { state: { agencyDetails } })
+                navigate(`/${agencyDetails._id}/Category/Bollywood`, {
+                  state: { agencyDetails },
+                })
               }
             >
               <img
@@ -79,7 +90,9 @@ const MainNewsSlider = ({ agencyDetails }) => {
               className="position-relative overflow-hidden mb-3"
               style={{ height: 80 }}
               onClick={() =>
-                navigate("/Category/Education", { state: { agencyDetails } })
+                navigate(`/${agencyDetails._id}/Category/Education`, {
+                  state: { agencyDetails },
+                })
               }
             >
               <img
@@ -95,7 +108,9 @@ const MainNewsSlider = ({ agencyDetails }) => {
               className="position-relative overflow-hidden"
               style={{ height: 80 }}
               onClick={() =>
-                navigate("/Category/Healthcare", { state: { agencyDetails } })
+                navigate(`/${agencyDetails._id}/Category/Healthcare`, {
+                  state: { agencyDetails },
+                })
               }
             >
               <img

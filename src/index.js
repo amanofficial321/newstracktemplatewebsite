@@ -5,6 +5,12 @@ import "./index.css";
 import "./style.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import Store from "./redux/Store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+  <Provider store={Store}>
+    <App />
+  </Provider>
+);

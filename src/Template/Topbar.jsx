@@ -1,45 +1,56 @@
+import axios from "axios";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { addUser } from "../redux/slices/UserSlice";
+import { memo } from "react";
+const TopbarStart = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-const TopbarStart = ({ agencyDetails }) => {
+  const agencyDetails = useSelector((state) => {
+    return state.User;
+  });
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://174.138.101.222:8080/${id}/get-publication-details`
+      );
+      dispatch(addUser(response.data.data[0]));
+      console.log("Fetch Data API called topbar page");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  if (!agencyDetails._id) {
+    fetchData();
+  }
   // console.log(agencyDetails);
+  console.log("Topbar Called");
   return (
     <div className="container-fluid">
-      {/* <div className="row align-items-center bg-light px-lg-5">
-        <div className="col-12 col-md-8">
-          <div className="d-flex justify-content-between">
-            <div
-              className="bg-primary text-white text-center py-2"
-              style={{ width: 100 }}
-            >
-              Trending
-            </div>
-            <div
-              className=" position-relative d-inline-flex align-items-center ml-3"
-              style={{ width: "calc(100% - 100px)", paddingLeft: 90 }}
-            >
-              <div className="text-truncate">
-                <a className="text-secondary" href="">
-                  Your Only Destination for Most Authentic News
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4 text-right d-none d-md-block">
-          {`${date.toLocaleDateString()}`}
-        </div>
-      </div> */}
       <div className="row align-items-center py-2 px-lg-5">
         <div className="col-lg-4">
           <div className="navbar-brand d-none d-lg-block">
             <h1 className="m-0 display-5 ">
-              <span className="text-danger">
+              <p className="text-danger" style={{ textOverflow: "unset" }}>
                 {agencyDetails.publication_name}
-              </span>
+              </p>
             </h1>
           </div>
         </div>
-        <div className="col-lg-8 text-center text-lg-right d-flex justify-content-end">
+        <div className="col-lg-5 col-md-8 text-center text-lg-right d-flex justify-content-center ">
+          <img
+            // className="img-fluid"
+            src={`http://174.138.10.222:8080${agencyDetails.logo_small}`}
+            alt="Advertisement Topbar"
+            width={"100%"}
+            height={"100px"}
+            style={{ backgroundColor: "gray" }}
+          />
+        </div>
+        <div className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex justify-content-end">
           <img
             className="img-fluid"
             src={`http://174.138.101.222:8080${agencyDetails.logo_small}`}
@@ -53,4 +64,4 @@ const TopbarStart = ({ agencyDetails }) => {
   );
 };
 
-export default TopbarStart;
+export default memo(TopbarStart);
