@@ -1,23 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.dcdbd287.css",
-    "main.js": "/static/js/main.ec33bcbd.js",
-    "static/media/news-500x280-3.jpg": "/static/media/news-500x280-3.e5c284319afd729ff8b6.jpg",
+    "main.css": "/static/css/main.9a137c35.css",
+    "main.js": "/static/js/main.22a66401.js",
     "static/media/news-700x435-2.jpg": "/static/media/news-700x435-2.0422992fd12987dee20a.jpg",
-    "static/media/news-500x280-5.jpg": "/static/media/news-500x280-5.b902d11026b2753f6dfd.jpg",
-    "static/media/news-500x280-2.jpg": "/static/media/news-500x280-2.c39dfd68ba9e90f347fa.jpg",
     "static/media/Bhaskar.ttf": "/static/media/Bhaskar.0f69f744023f27cc9dc5.ttf",
     "static/media/news-700x435-1.jpg": "/static/media/news-700x435-1.2702e5380f760a7ce9ce.jpg",
-    "static/media/news-500x280-4.jpg": "/static/media/news-500x280-4.dcd351569baa17907aa5.jpg",
-    "static/media/news-500x280-6.jpg": "/static/media/news-500x280-6.ff0716d756b8e5348bb8.jpg",
     "static/media/cat-500x80-1.jpg": "/static/media/cat-500x80-1.1d2c5549bf4ede0bd110.jpg",
     "static/media/cat-500x80-4.jpg": "/static/media/cat-500x80-4.529dddd87fc8c0f2de97.jpg",
     "index.html": "/index.html",
-    "main.dcdbd287.css.map": "/static/css/main.dcdbd287.css.map",
-    "main.ec33bcbd.js.map": "/static/js/main.ec33bcbd.js.map"
+    "main.9a137c35.css.map": "/static/css/main.9a137c35.css.map",
+    "main.22a66401.js.map": "/static/js/main.22a66401.js.map"
   },
   "entrypoints": [
-    "static/css/main.dcdbd287.css",
-    "static/js/main.ec33bcbd.js"
+    "static/css/main.9a137c35.css",
+    "static/js/main.22a66401.js"
   ]
 }
