@@ -31,7 +31,7 @@ const TopbarStart = () => {
   return (
     <div className="container-fluid">
       <div className="row align-items-center py-2 px-lg-5">
-        <div className="col-lg-4">
+        {/* <div className="col-lg-4">
           <div className="navbar-brand d-none d-lg-block">
             <h1 className="m-0 display-5 ">
               <p className="text-danger" style={{ textOverflow: "unset" }}>
@@ -39,8 +39,17 @@ const TopbarStart = () => {
               </p>
             </h1>
           </div>
+        </div> */}
+        <div className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex">
+          <img
+            // className="img-fluid"
+            src={`http://174.138.101.222:8080${agencyDetails.logo_small}`}
+            alt=""
+            width={"100%"}
+            height={"100px"}
+          />
         </div>
-        <div className="col-lg-5 col-md-8 text-center text-lg-right d-flex justify-content-center ">
+        <div className="col-lg-9 col-md-8 text-center text-lg-right d-flex justify-content-center ">
           <img
             // className="img-fluid"
             src={`http://174.138.10.222:8080${agencyDetails.logo_small}`}
@@ -48,15 +57,6 @@ const TopbarStart = () => {
             width={"100%"}
             height={"100px"}
             style={{ backgroundColor: "gray" }}
-          />
-        </div>
-        <div className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex justify-content-end">
-          <img
-            className="img-fluid"
-            src={`http://174.138.101.222:8080${agencyDetails.logo_small}`}
-            alt=""
-            width={"200px"}
-            height={"100px"}
           />
         </div>
       </div>

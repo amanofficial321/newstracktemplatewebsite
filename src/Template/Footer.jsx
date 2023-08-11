@@ -61,7 +61,7 @@ const Footer = ({ agencyDetails }) => {
               </a>
             </div>
           </div>
-          <div
+          {/* <div
             className="col-lg-3 col-md-6 mb-5"
             // style={{ backgroundColor: "gray" }}
           >
@@ -78,7 +78,7 @@ const Footer = ({ agencyDetails }) => {
               style={{ width: "100%", height: "100%", maxHeight: "350px" }}
               src="https://marketplace.canva.com/EAE97rcdF5A/1/0/1131w/canva-blue-and-yellow-modern-job-hiring-poster-r-gWZi50xNk.jpg"
             />
-          </div>
+          </div> */}
           {/* <div className="col-lg-3 col-md-6 mb-5">
             <h4 className="font-weight-bold mb-4">Categories</h4>
             <div className="d-flex flex-wrap m-n1">

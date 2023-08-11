@@ -37,12 +37,13 @@ const SingleNews = ({ prop }) => {
                   <img
                     className="img-fluid w-100"
                     src={`http://174.138.101.222:8080${prop.image}`}
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", borderRadius: "1rem" }}
                   />
                   <div
                     style={{
                       position: "relative",
-                      left: "85%",
+                      // left: "85%",
+                      float: "right",
                       marginBottom: "10px",
                     }}
                   >
@@ -81,6 +82,51 @@ const SingleNews = ({ prop }) => {
                     </div>
                   </div>
                 </div>
+                {/* Tags Start */}
+                <div className="pb-3">
+                  <div className="bg-light py-2 px-4 mb-3">
+                    <h3 className="m-0">Tags</h3>
+                  </div>
+                  <div className="d-flex flex-wrap m-n1">
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Politics
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Business
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Corporate
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Sports
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Health
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Education
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Science
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Technology
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Foods
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Entertainment
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Travel
+                    </a>
+                    <a href="" className="btn btn-sm btn-outline-secondary m-1">
+                      Lifestyle
+                    </a>
+                  </div>
+                </div>
+                {/* Tags End */}
               </div>
               <div className="col-lg-4 pt-3 pt-lg-0">
                 {/* Social Follow Start */}
@@ -282,7 +328,7 @@ const SingleNews = ({ prop }) => {
                 </div>
                 {/* Popular News End */}
                 {/* Tags Start */}
-                <div className="pb-3">
+                {/* <div className="pb-3">
                   <div className="bg-light py-2 px-4 mb-3">
                     <h3 className="m-0">Tags</h3>
                   </div>
@@ -324,7 +370,7 @@ const SingleNews = ({ prop }) => {
                       Lifestyle
                     </a>
                   </div>
-                </div>
+                </div> */}
                 {/* Tags End */}
               </div>
             </div>

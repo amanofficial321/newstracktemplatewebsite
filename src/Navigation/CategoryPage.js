@@ -29,7 +29,7 @@ const CategoryPage = () => {
     getData();
   }, []);
   return (
-    <div>
+    <div style={{ overflowX: "hidden" }}>
       <Topbar />
       <Navbar agencyDetails={location.state.agencyDetails} />
       <div className="row">

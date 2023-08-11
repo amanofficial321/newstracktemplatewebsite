@@ -18,7 +18,7 @@ const Template = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://174.138.101.222:8080/${id}/get-publication-details`
+        `http://174.138.101.222:8080/${id}/get-publication-details`
       );
       setAgencyDetails(response.data.data[0]);
       dispatch(addUser(response.data.data[0]));
