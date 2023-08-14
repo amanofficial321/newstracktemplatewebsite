@@ -56,7 +56,7 @@ const TopbarStart = () => {
         <div className="col-lg-9 col-md-8 text-center text-lg-right d-flex justify-content-center ">
           <img
             // className="img-fluid"
-            src={require("./img/adv.png.jpg")}
+            src={require("./img/topbaradv.jpg")}
             alt="Advertisement Topbar"
             width={"100%"}
             height={"100px"}

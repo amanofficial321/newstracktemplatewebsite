@@ -27,7 +27,7 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
   return (
     <div className="container-fluid py-3">
       <div className="container">
-        <div className="row">
+        <div className="row row-col3-3">
           <div className="col-lg-8">
             <Carousel
               showControls
