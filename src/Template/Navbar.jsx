@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ agencyDetails }) => {
   return (
@@ -24,9 +26,12 @@ const Navbar = ({ agencyDetails }) => {
           id="navbarCollapse"
         >
           <div className="navbar-nav mr-auto py-0">
-            <a href="index.html" className="nav-item nav-link active">
+            <Link
+              to={`/Home/${agencyDetails._id}`}
+              className="nav-item nav-link active"
+            >
               Home
-            </a>
+            </Link>
             <a href="category.html" className="nav-item nav-link">
               Categories
             </a>

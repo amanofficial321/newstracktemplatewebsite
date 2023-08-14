@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { addUser } from "../redux/slices/UserSlice";
 import { memo } from "react";
 const TopbarStart = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const agencyDetails = useSelector((state) => {
     return state.User;
@@ -18,7 +19,7 @@ const TopbarStart = () => {
         `http://174.138.101.222:8080/${id}/get-publication-details`
       );
       dispatch(addUser(response.data.data[0]));
-      console.log("Fetch Data API called topbar page");
+      // console.log("Fetch Data API called topbar page");
     } catch (error) {
       console.log(error);
     }
@@ -27,7 +28,7 @@ const TopbarStart = () => {
     fetchData();
   }
   // console.log(agencyDetails);
-  console.log("Topbar Called");
+  // console.log("Topbar Called");
   return (
     <div className="container-fluid">
       <div className="row align-items-center py-2 px-lg-5">
@@ -40,7 +41,10 @@ const TopbarStart = () => {
             </h1>
           </div>
         </div> */}
-        <div className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex">
+        <div
+          onClick={() => navigate(`/Home/${id}`)}
+          className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex"
+        >
           <img
             // className="img-fluid"
             src={`http://174.138.101.222:8080${agencyDetails.logo_small}`}
@@ -52,11 +56,11 @@ const TopbarStart = () => {
         <div className="col-lg-9 col-md-8 text-center text-lg-right d-flex justify-content-center ">
           <img
             // className="img-fluid"
-            src={`http://174.138.10.222:8080${agencyDetails.logo_small}`}
+            src={require("./img/adv.png.jpg")}
             alt="Advertisement Topbar"
             width={"100%"}
             height={"100px"}
-            style={{ backgroundColor: "gray" }}
+            // style={{ backgroundColor: "gray" }}
           />
         </div>
       </div>

@@ -22,7 +22,19 @@ const Template = () => {
       );
       setAgencyDetails(response.data.data[0]);
       dispatch(addUser(response.data.data[0]));
-      console.log("Fetch Data API called template page");
+      // console.log("Fetch Data API called template page");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const [breakingNews, setBreakingNews] = useState();
+  const fetchBreakingNews = async () => {
+    try {
+      const response = await axios.get(
+        `http://174.138.101.222:8080/${id}/getBreakingNews`
+      );
+      // console.log(response.data.data, "breaking");
+      setBreakingNews(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -30,12 +42,18 @@ const Template = () => {
 
   useEffect(() => {
     fetchData();
+    fetchBreakingNews();
   }, []);
   return (
     <div>
       <Topbar />
       {agencyDetails && <Navbar agencyDetails={agencyDetails} />}
-      {agencyDetails && <MainNewsSlider agencyDetails={agencyDetails} />}
+      {agencyDetails && breakingNews && (
+        <MainNewsSlider
+          agencyDetails={agencyDetails}
+          breakingNews={breakingNews}
+        />
+      )}
       {agencyDetails && <EducationSports agencyDetails={agencyDetails} />}
       {agencyDetails && <Footer agencyDetails={agencyDetails} />}
     </div>

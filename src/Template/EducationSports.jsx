@@ -1,12 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const EducationSports = ({ agencyDetails }) => {
-  const categories = ["Political", "Bollywood", "Education", "Healthcare"];
   const [data, setData] = useState([]);
   const [fetch, setFetch] = useState(false);
+  const navigate = useNavigate();
   // console.log(data);
-  console.log("Education Sports Called");
+  // console.log("Education Sports Called");
+
+  const [categories, setCategory] = useState();
+
+  const getCategoryName = (url) => {
+    let categoryName = "";
+    categories.map((element) => {
+      if (element.categories_Name_Url === url) {
+        categoryName = element.categories_Name_Hindi;
+        console.log(categoryName);
+        return categoryName;
+      }
+      return categoryName;
+    });
+  };
 
   const getData = async (categories) => {
     try {
@@ -26,18 +41,39 @@ const EducationSports = ({ agencyDetails }) => {
       setData((prevData) => [...prevData, ...newData]);
       setFetch(true);
 
-      // console.log("data fetched");
+      console.log("data fetched");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const [input, setInput] = useState([]);
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://174.138.101.222:8080/getmastercategories"
+      );
+      // console.log(response.data.data, "categories");
+      setCategory(response.data.data);
+
+      response.data.data.map((item) => {
+        setInput((prev) => [...prev, item.categories_Name_Url]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // console.log(input, "input");
   useEffect(() => {
-    getData(categories);
-  }, []);
+    getCategories();
+    getData(input);
+  }, [categories?.length]);
+
+  // console.log(data);
+
   return (
     // <div className="container-fluid">
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         {fetch &&
           data.map((item, index) => {
@@ -48,6 +84,7 @@ const EducationSports = ({ agencyDetails }) => {
                     <h3 className="m-0">{item.category}</h3>
                   )}
                 </div>
+
                 <div
                   style={{
                     justifyContent: "space-between",
@@ -64,6 +101,18 @@ const EducationSports = ({ agencyDetails }) => {
                           className="position-relative col-sm-12 col-md-6"
                           style={{
                             height: "400px",
+                          }}
+                          onClick={() => {
+                            console.log("Img clicked");
+                            navigate(
+                              `/${agencyDetails._id}/DetailedNews/${news._id}`,
+                              {
+                                state: {
+                                  item: news,
+                                  agencyDetails: agencyDetails,
+                                },
+                              }
+                            );
                           }}
                         >
                           <img
