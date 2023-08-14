@@ -32,9 +32,9 @@ const Navbar = ({ agencyDetails }) => {
             >
               Home
             </Link>
-            <a href="category.html" className="nav-item nav-link">
+            {/* <a href="category.html" className="nav-item nav-link">
               Categories
-            </a>
+            </a> */}
             <a href="single.html" className="nav-item nav-link">
               Single News
             </a>
@@ -62,7 +62,7 @@ const Navbar = ({ agencyDetails }) => {
               Contact
             </a>
           </div>
-          <div
+          {/* <div
             className="input-group ml-auto"
             style={{ width: "100%", maxWidth: 300 }}
           >
@@ -72,7 +72,7 @@ const Navbar = ({ agencyDetails }) => {
                 <i className="fa fa-search" />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </nav>
     </div>

@@ -79,12 +79,12 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
           <div className="col-lg-4">
             <div className="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
               <h3 className="m-0">Categories</h3>
-              <p
+              {/* <p
                 className="text-secondary font-weight-medium text-decoration-none"
                 href=""
               >
                 View All
-              </p>
+              </p> */}
             </div>
             {categories &&
               categories.map((item) => {
