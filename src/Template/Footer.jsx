@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Footer = ({ agencyDetails }) => {
-  // console.log("Footer Component");
+const Footer = () => {
+  const agencyDetails = useSelector((state) => {
+    return state.User;
+  });
   return (
     <>
       <div className="container-fluid bg-light pt-5 px-sm-3 px-md-5">

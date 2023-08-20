@@ -14,7 +14,7 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
         "http://174.138.101.222:8080/getmastercategories"
       );
       setCategory(response.data.data);
-      console.log(response.data.data);
+      // console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -77,21 +77,15 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
             </div>
           </div>
           <div className="col-lg-4">
-            <div className="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+            <div className="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-1">
               <h3 className="m-0">Categories</h3>
-              {/* <p
-                className="text-secondary font-weight-medium text-decoration-none"
-                href=""
-              >
-                View All
-              </p> */}
             </div>
             {categories &&
               categories.map((item) => {
                 return (
                   <div
-                    className="position-relative overflow-hidden mb-3"
-                    style={{ height: 80 }}
+                    className="position-relative overflow-hidden mb-2"
+                    style={{ height: "11%" }}
                     onClick={() =>
                       navigate(
                         `/${agencyDetails._id}/Category/${item.categories_Name_Url}`,
@@ -107,7 +101,7 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                       style={{ objectFit: "cover" }}
                     />
                     <p className="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                      {item.categories_Name_Url}
+                      {item.categories_Name_English}
                     </p>
                   </div>
                 );

@@ -11,17 +11,13 @@ const EducationSports = ({ agencyDetails }) => {
 
   const [categories, setCategory] = useState();
 
-  const getCategoryName = (url) => {
-    let categoryName = "";
-    categories.map((element) => {
-      if (element.categories_Name_Url === url) {
-        categoryName = element.categories_Name_Hindi;
-        console.log(categoryName);
-        return categoryName;
-      }
-      return categoryName;
-    });
-  };
+  // const getCategoryName = (url) => {
+  //   for (let i = 0; i < categories.length; i++) {
+  //     if (categories[i].categories_Name_Url === url) {
+  //       return categories[i].categories_Name_Hindi;
+  //     }
+  //   }
+  // };
 
   const getData = async (categories) => {
     try {
@@ -41,7 +37,7 @@ const EducationSports = ({ agencyDetails }) => {
       setData((prevData) => [...prevData, ...newData]);
       setFetch(true);
 
-      console.log("data fetched");
+      // console.log("data fetched");
     } catch (error) {
       console.log(error);
     }
@@ -71,14 +67,28 @@ const EducationSports = ({ agencyDetails }) => {
 
   // console.log(data);
 
+  function formatDate(inputDate) {
+    // Step 1: Parse the input string into a JavaScript Date object
+    const dateObj = new Date(inputDate);
+
+    // Step 2: Extract day, month, and year from the Date object
+    const day = dateObj.getUTCDate();
+    const month = dateObj.toLocaleString("default", { month: "long" });
+    const year = dateObj.getUTCFullYear();
+
+    // Step 3: Format the values into "day month year" format
+    const formattedDate = `${day} ${month} ${year}`;
+    return formattedDate;
+  }
+
   return (
     // <div className="container-fluid">
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
         {fetch &&
           data.map((item, index) => {
             return (
-              <div key={index} className="col-lg-12 py-3">
+              <div key={index} className="col-lg-12 py-3 mb-5">
                 <div className="bg-light py-2 px-4 mb-3">
                   {item.data.length > 0 && (
                     <h3 className="m-0">{item.category}</h3>
@@ -100,10 +110,10 @@ const EducationSports = ({ agencyDetails }) => {
                           key={index}
                           className="position-relative col-sm-12 col-md-6"
                           style={{
-                            height: "400px",
+                            height: "300px",
                           }}
                           onClick={() => {
-                            console.log("Img clicked");
+                            // console.log("Img clicked");
                             navigate(
                               `/${agencyDetails._id}/DetailedNews/${news._id}`,
                               {
@@ -127,20 +137,21 @@ const EducationSports = ({ agencyDetails }) => {
                             }}
                           />
                           <div
-                            className="overlay position-relative bg-light"
+                            className="overlay position-relative bg-light "
                             style={{
                               borderRadius: "0 0 1rem 1rem",
                               boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
+                              height: "20%",
                             }}
                           >
                             <div className="mb-2" style={{ fontSize: 13 }}>
-                              <a href="">Technology</a>
-                              <span className="px-1">/</span>
-                              <span>January 01, 2045</span>
+                              {/* <a href="">Technology</a>
+                              <span className="px-1">/</span> */}
+                              <span>{formatDate(news.updatedAt)}</span>
                             </div>
-                            <a className="h4 m-0" href="">
+                            <p className=" m-0" href="">
                               {news.title}
-                            </a>
+                            </p>
                           </div>
                         </div>
                       );

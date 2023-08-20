@@ -10,7 +10,7 @@ import "./ViewNews.scss";
 import SingleNews from "../Template/SingleNews";
 const ViewNews = () => {
   let location = useLocation();
-  console.log(location);
+  // console.log(location);
   const { id, newsId } = useParams();
   const agencyDetails = useRef(null);
   const [prop, setProp] = useState(null);

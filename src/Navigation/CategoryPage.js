@@ -6,10 +6,12 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 import Footer from "../Template/Footer";
+import { useSelector } from "react-redux";
 
 const CategoryPage = () => {
-  const location = useLocation();
-  console.log("Category Page Called");
+  const agencyDetails = useSelector((state) => {
+    return state.User;
+  });
   const navigate = useNavigate();
   const { category } = useParams();
   const { id } = useParams();
@@ -17,7 +19,7 @@ const CategoryPage = () => {
   const getData = async () => {
     try {
       let response = await axios.get(
-        `http://174.138.101.222:8080/${location.state.agencyDetails._id}/get-Postnews/${category}`
+        `http://174.138.101.222:8080/${agencyDetails._id}/get-Postnews/${category}`
       );
       console.log("Category API Called");
       setData(response.data.data);
@@ -29,9 +31,9 @@ const CategoryPage = () => {
     getData();
   }, []);
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <div style={{ overflowX: "hidden" }} className="container-fluid">
       <Topbar />
-      <Navbar agencyDetails={location.state.agencyDetails} />
+      <Navbar />
       <div className="row">
         <div className="col-lg-12 py-3">
           <div className="bg-light py-2 px-4 mb-3">
@@ -44,9 +46,9 @@ const CategoryPage = () => {
         <div
           className="col-lg-12 py-3 d-flex"
           style={{
-            gap: "5px",
+            gap: "15px",
             flexWrap: "wrap",
-            justifyContent: "space-around",
+            justifyContent: "flex-start",
           }}
         >
           {data &&
@@ -58,24 +60,45 @@ const CategoryPage = () => {
                   style={{ minWidth: "18rem", width: "20rem" }}
                 >
                   <img
-                    // src={item.image}
                     src={`http://174.138.101.222:8080${item.image}`}
                     className="card-img-top"
                     alt="..."
                     style={{ height: "200px" }}
                   />
                   <div className="card-body  ">
-                    <h5 className="card-title">{item.title}</h5>
-                    <p className="card-text">{item.short_details}</p>
+                    <h5
+                      style={{ fontSize: "20px", fontWeight: "700" }}
+                      className="card-title"
+                    >
+                      {item.title}
+                    </h5>
+                    <p
+                      style={{
+                        fontSize: "15px",
+                        fontWeight: "500",
+
+                        lineClamp: "3",
+                        overflow: "hidden",
+                        maxHeight: "80px",
+                        marginBottom: "40px",
+                      }}
+                      className="card-text "
+                    >
+                      {item.short_details}
+                    </p>
                     <a
-                      //   href="#"
+                      style={{
+                        position: "absolute",
+                        bottom: "10px",
+                        left: "50%",
+                        transform: "translate(-50%)",
+                      }}
                       className="btn btn-primary mx-auto d-flex justify-content-center "
-                      //   style={{ width: "150px", }}
                       onClick={() => {
                         navigate(`/${id}/DetailedNews/${item._id}`, {
                           state: {
                             item: item,
-                            agencyDetails: location.state.agencyDetails,
+                            agencyDetails: agencyDetails,
                           },
                         });
                       }}
@@ -88,7 +111,7 @@ const CategoryPage = () => {
             })}
         </div>
       </div>
-      <Footer agencyDetails={location.state.agencyDetails} />
+      <Footer />
     </div>
   );
 };

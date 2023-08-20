@@ -1,8 +1,32 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ agencyDetails }) => {
+const Navbar = () => {
+  const agencyDetails = useSelector((state) => {
+    return state.User;
+  });
+
+  // console.log(agencyDetails);
+
+  const [categories, setCategory] = useState();
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://174.138.101.222:8080/getmastercategories"
+      );
+      // console.log(response.data.data, "categories");
+      setCategory(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <div className="container-fluid p-0 mb-3">
       <nav className="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5 px-sm-1">
@@ -42,22 +66,27 @@ const Navbar = ({ agencyDetails }) => {
               <a
                 href="#"
                 className="nav-link dropdown-toggle"
-                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
               >
-                Dropdown
+                Categories
               </a>
               <div className="dropdown-menu rounded-0 m-0">
-                <a href="#" className="dropdown-item">
-                  Menu item 1
-                </a>
-                <a href="#" className="dropdown-item">
-                  Menu item 2
-                </a>
-                <a href="#" className="dropdown-item">
-                  Menu item 3
-                </a>
+                {categories &&
+                  categories.map((item, index) => {
+                    return (
+                      <Link
+                        to={`/${agencyDetails._id}/Category/${item.categories_Name_Url}`}
+                        state={agencyDetails}
+                        key={index}
+                        className="dropdown-item"
+                      >
+                        {item.categories_Name_English}
+                      </Link>
+                    );
+                  })}
               </div>
             </div>
+
             <a href="contact.html" className="nav-item nav-link">
               Contact
             </a>
