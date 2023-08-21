@@ -51,7 +51,7 @@ const Navbar = () => {
         >
           <div className="navbar-nav mr-auto py-0">
             <Link
-              to={`/Home/${agencyDetails._id}`}
+              to={`/${agencyDetails._id}`}
               className="nav-item nav-link active"
             >
               Home

@@ -85,7 +85,7 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                 return (
                   <div
                     className="position-relative overflow-hidden mb-2"
-                    style={{ height: "11%" }}
+                    style={{ height: "11%",backgroundColor:'rgb(232, 232, 232)' }}
                     onClick={() =>
                       navigate(
                         `/${agencyDetails._id}/Category/${item.categories_Name_Url}`,
@@ -95,13 +95,13 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                       )
                     }
                   >
-                    <img
+                    {/* <img
                       className="img-fluid w-100 h-100"
                       src={require("./img/cat-500x80-1.jpg")}
                       style={{ objectFit: "cover" }}
-                    />
+                    /> */}
                     <p className="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                      {item.categories_Name_English}
+                      {item.categories_Name_Hindi}
                     </p>
                   </div>
                 );

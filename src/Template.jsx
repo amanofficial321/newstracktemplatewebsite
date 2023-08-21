@@ -22,7 +22,10 @@ const Template = () => {
       );
       setAgencyDetails(response.data.data[0]);
       dispatch(addUser(response.data.data[0]));
-      // console.log("Fetch Data API called template page");
+      document.title = response.data.data[0].publication_name
+      const favicon =document.getElementById("favicon"); // Accessing favicon element
+    favicon.href = `http://174.138.101.222:8080${response.data.data[0].logo_small}`;
+      
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const EducationSports = ({ agencyDetails }) => {
   const [data, setData] = useState([]);
@@ -11,13 +12,13 @@ const EducationSports = ({ agencyDetails }) => {
 
   const [categories, setCategory] = useState();
 
-  // const getCategoryName = (url) => {
-  //   for (let i = 0; i < categories.length; i++) {
-  //     if (categories[i].categories_Name_Url === url) {
-  //       return categories[i].categories_Name_Hindi;
-  //     }
-  //   }
-  // };
+  const getCategoryName = (url) => {
+    for (let i = 0; i < categories.length; i++) {
+      if (categories[i].categories_Name_Url === url) {
+        return categories[i].categories_Name_Hindi;
+      }
+    }
+  };
 
   const getData = async (categories) => {
     try {
@@ -91,7 +92,7 @@ const EducationSports = ({ agencyDetails }) => {
               <div key={index} className="col-lg-12 py-3 mb-5">
                 <div className="bg-light py-2 px-4 mb-3">
                   {item.data.length > 0 && (
-                    <h3 className="m-0">{item.category}</h3>
+                    <h3 className="m-0"><Link style={{color:'black'}} to={`/${agencyDetails._id}/Category/${item.category}`}>{getCategoryName(item.category)}</Link></h3>
                   )}
                 </div>
 

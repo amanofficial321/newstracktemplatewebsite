@@ -196,7 +196,7 @@ const Footer = () => {
             className="font-weight-bold text-danger"
             href="https://www.linkedin.com/in/aman-garg-076012212/"
           >
-            Aman Garg
+            Aman Garg (Version 1)
           </a>
         </p>
       </div>

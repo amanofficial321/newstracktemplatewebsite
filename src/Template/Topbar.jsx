@@ -42,7 +42,7 @@ const TopbarStart = () => {
           </div>
         </div> */}
         <div
-          onClick={() => navigate(`/Home/${id}`)}
+          onClick={() => navigate(`/${id}`)}
           className="col-lg-3 col-md-4 col-sm-12 text-center text-lg-right d-flex"
         >
           <img
