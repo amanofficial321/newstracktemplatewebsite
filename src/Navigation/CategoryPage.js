@@ -32,7 +32,7 @@ const CategoryPage = () => {
   }, []);
   return (
     <div style={{ overflowX: "hidden" }} className="container-fluid">
-      <Topbar />
+      <Topbar page_name={"Categories_Page"} />
       <Navbar />
       <div className="row">
         <div className="col-lg-12 py-3">
@@ -111,7 +111,7 @@ const CategoryPage = () => {
             })}
         </div>
       </div>
-      <Footer />
+      <Footer page_name={"Categories_Page"} />
     </div>
   );
 };

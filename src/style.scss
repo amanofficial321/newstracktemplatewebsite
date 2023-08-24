@@ -128,7 +128,7 @@ h6,
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 30px;
+  padding: 7px;
   top: 0;
   left: 0;
   display: flex;
@@ -152,9 +152,9 @@ h6,
     color: black;
   }
 }
-.overlay {
-  height: 40% !important;
-}
+// .overlay {
+//   height: 40% !important;
+// }
 .navbar-brand {
   white-space: initial !important;
 }

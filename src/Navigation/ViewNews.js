@@ -51,10 +51,10 @@ const ViewNews = () => {
 
   return (
     <div>
-      {render && <Topbar agencyDetails={agencyDetails.current} />}
+      {render && <Topbar page_name={"Detailed_News_Page"} agencyDetails={agencyDetails.current} />}
       {render && <Navbar agencyDetails={agencyDetails.current} />}
       {prop && <SingleNews prop={prop} />}
-      {render && <Footer agencyDetails={agencyDetails.current} />}
+      {render && <Footer page_name={"Categories_Page"} agencyDetails={agencyDetails.current} />}
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
-const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
+const MainNewsSlider = ({ agencyDetails, breakingNews, page_name }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [categories, setCategory] = useState();
   const getCategories = async () => {
@@ -14,26 +15,45 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
         "http://174.138.101.222:8080/getmastercategories"
       );
       setCategory(response.data.data);
-      // console.log(response.data.data);
+     
     } catch (error) {
       console.log(error);
     }
   };
+
+  const [ad, setAd] = useState();
+
+  const fetchAd= async ()=>{
+    try {
+      const response = await axios.get(`http://174.138.101.222:8080/${id}/${page_name}/Topbar/get-Advertisement`)
+      // console.log(response.data.data[0])
+      setAd(response.data.data[0])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    fetchAd();
+  },[id,page_name])
 
   useEffect(() => {
     getCategories();
   }, []);
 
   return (
-    <div className="container-fluid py-3">
+    // <div className="container-fluid py-3">
       <div className="container">
-        <div className="row row-col3-3">
-          <div className="col-lg-8">
+        <div className="row " >
+          <div className="col-md-8 col-sm-12">
+            <div style={{maxHeight:'400px'}}>
             <Carousel
-              showControls
-              showIndicators
               infiniteLoop
               showThumbs={false}
+              showStatus={false}
+              autoPlay={true}
+              showIndicators={false}
+              showArrows={true}
+              emulateTouch={true}
             >
               {breakingNews.length &&
                 breakingNews.map((news) => {
@@ -41,9 +61,8 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                     <div
                       key={news._id}
                       className="w-100 d-block"
-                      style={{ height: 435 }}
+                     
                       onClick={() => {
-                        console.log("Img clicked");
                         navigate(
                           `/${agencyDetails._id}/DetailedNews/${news._id}`,
                           {
@@ -57,35 +76,50 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                     >
                       <img
                         src={
+                          
                           news.image
                             ? `http://174.138.101.222:8080${news.image}`
                             : `https://www.newsclick.in/sites/default/files/2018-09/xfakenews_0.jpg.pagespeed.ic_.232PSP6q2x_0.jpg`
                         }
                         alt="..."
+                        height={'300px'}
                       />
+                      <div style={{width:'100%',height:'100px'}} >
                       <h5>{news.title}</h5>
                       <p>{news.short_details}</p>
+                      </div>
                     </div>
                   );
                 })}
             </Carousel>
-            <div style={{ backgroundColor: "gray", height: "37%" }}>
-              <img
-                src={require("./img/Advslider.jpg")}
-                style={{ width: "100%", height: "100%" }}
-              />
+            </div>
+            <div style={{height:'100px'}} >
+            {
+            ad?.script.length>0 && <p className="mb-0" style={{border:'1px solid black', width:'100%',height:'100px',overflow:'hidden'}}>{ad?.script}</p>
+          }
+          {
+            ad?.text.length>0 && <p className="mb-0" style={{border:'1px solid black',width:'100%',height:'100px',overflow:'hidden'}}>{ad?.text}</p>
+          }
+          {
+            ad?.image.length>0 && <img style={{width:'100%',height:'100%'}} src={`http://174.138.101.222:8080${ad?.image}`} />
+          }
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-md-4 col-sm-12 d-flex flex-column justify-content-between">
             <div className="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-1">
               <h3 className="m-0">Categories</h3>
             </div>
             {categories &&
-              categories.map((item) => {
+              categories.map((item, index) => {
                 return (
                   <div
-                    className="position-relative overflow-hidden mb-2"
-                    style={{ height: "11%",backgroundColor:'rgb(232, 232, 232)' }}
+                    key={index}
+                    className="position-relative overflow-hidden"
+                    style={{
+                      height: "11%",
+                      backgroundColor: "rgb(232, 232, 232)",
+                      minHeight: "50px",
+                    }}
                     onClick={() =>
                       navigate(
                         `/${agencyDetails._id}/Category/${item.categories_Name_Url}`,
@@ -95,12 +129,8 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
                       )
                     }
                   >
-                    {/* <img
-                      className="img-fluid w-100 h-100"
-                      src={require("./img/cat-500x80-1.jpg")}
-                      style={{ objectFit: "cover" }}
-                    /> */}
-                    <p className="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
+                  
+                    <p className="overlay align-items-center justify-content-center h4 mb-0 text-white text-decoration-none">
                       {item.categories_Name_Hindi}
                     </p>
                   </div>
@@ -109,7 +139,7 @@ const MainNewsSlider = ({ agencyDetails, breakingNews }) => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

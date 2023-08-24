@@ -7,8 +7,6 @@ const EducationSports = ({ agencyDetails }) => {
   const [data, setData] = useState([]);
   const [fetch, setFetch] = useState(false);
   const navigate = useNavigate();
-  // console.log(data);
-  // console.log("Education Sports Called");
 
   const [categories, setCategory] = useState();
 
@@ -83,24 +81,30 @@ const EducationSports = ({ agencyDetails }) => {
   }
 
   return (
-    // <div className="container-fluid">
     <div className="container">
       <div className="row">
         {fetch &&
           data.map((item, index) => {
             return (
-              <div key={index} className="col-lg-12 py-3 mb-5">
+              <div key={index} className="col-lg-12 py-3 ">
                 <div className="bg-light py-2 px-4 mb-3">
                   {item.data.length > 0 && (
-                    <h3 className="m-0"><Link style={{color:'black'}} to={`/${agencyDetails._id}/Category/${item.category}`}>{getCategoryName(item.category)}</Link></h3>
+                    <h3 className="m-0">
+                      <Link
+                        style={{ color: "black" }}
+                        to={`/${agencyDetails._id}/Category/${item.category}`}
+                      >
+                        {getCategoryName(item.category)}
+                      </Link>
+                    </h3>
                   )}
                 </div>
 
                 <div
-                  style={{
-                    justifyContent: "space-between",
-                  }}
-                  className="mb-3 row owl-carousel owl-carousel-3 carousel-item-2 position-relative d-flex flex-wrap"
+                  // style={{
+                  //   justifyContent: "space-between",
+                  // }}
+                  className="row  "
                 >
                   {item.data
                     .reverse()
@@ -131,7 +135,9 @@ const EducationSports = ({ agencyDetails }) => {
                             // src={news.image}
                             src={`http://174.138.101.222:8080${news.image}`}
                             style={{
-                              objectFit: "cover",
+                              // objectFit: "cover",
+                              // height: "100%",
+                              width: "100%",
 
                               boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
                               borderRadius: "1rem 1rem 0 0",
@@ -146,8 +152,7 @@ const EducationSports = ({ agencyDetails }) => {
                             }}
                           >
                             <div className="mb-2" style={{ fontSize: 13 }}>
-                              {/* <a href="">Technology</a>
-                              <span className="px-1">/</span> */}
+                              
                               <span>{formatDate(news.updatedAt)}</span>
                             </div>
                             <p className=" m-0" href="">
@@ -162,8 +167,7 @@ const EducationSports = ({ agencyDetails }) => {
             );
           })}
       </div>
-    </div>
-    // </div>
+   </div>
   );
 };
 

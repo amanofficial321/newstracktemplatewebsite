@@ -1,10 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const Footer = () => {
+const Footer = ({page_name}) => {
   const agencyDetails = useSelector((state) => {
     return state.User;
   });
+  const [ad, setAd] = useState();
+
+  const fetchAd= async ()=>{
+    try {
+      const response = await axios.get(`http://174.138.101.222:8080/${agencyDetails._id}/${page_name}/Footer/get-Advertisement`)
+      // console.log(response.data.data[0])
+      setAd(response.data.data[0])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    fetchAd();
+  },[agencyDetails,page_name])
   return (
     <>
       <div className="container-fluid bg-light pt-5 px-sm-3 px-md-5">
@@ -91,96 +106,21 @@ const Footer = () => {
           </div>
           <div
             className="col-lg-6 col-md-6 mb-5"
-            // style={{ backgroundColor: "gray" }}
           >
-            <img
-              style={{ width: "100%", height: "100%", maxHeight: "350px" }}
-              src={require("./img/MobileAdv.jpg")}
-            />
+             {
+            ad?.script.length>0 && <p className="mb-0" style={{border:'1px solid black', width:'100%',height:'350px',overflow:'hidden'}}>{ad?.script}</p>
+          }
+          {
+            ad?.text.length>0 && <p className="mb-0" style={{border:'1px solid black',width:'100%',height:'350px',overflow:'hidden'}}>{ad?.text}</p>
+          }
+          {
+            ad?.image.length>0 && <img style={{width:'100%',height:'100%', maxHeight: "350px"}} src={`http://174.138.101.222:8080${ad?.image}`} />
+          }
+
+          
           </div>
 
-          {/* <div className="col-lg-3 col-md-6 mb-5">
-            <h4 className="font-weight-bold mb-4">Categories</h4>
-            <div className="d-flex flex-wrap m-n1">
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Politics
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Business
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Corporate
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Sports
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Health
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Education
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Science
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Technology
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Foods
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Entertainment
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Travel
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Lifestyle
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6 mb-5">
-            <h4 className="font-weight-bold mb-4">Tags</h4>
-            <div className="d-flex flex-wrap m-n1">
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Politics
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Business
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Corporate
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Sports
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Health
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Education
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Science
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Technology
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Foods
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Entertainment
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Travel
-              </a>
-              <a href="" className="btn btn-sm btn-outline-secondary m-1">
-                Lifestyle
-              </a>
-            </div>
-          </div> */}
+        
         </div>
       </div>
       <div className="container-fluid py-4 px-sm-3 px-md-5">
